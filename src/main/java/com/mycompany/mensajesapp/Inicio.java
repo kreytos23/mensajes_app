@@ -1,6 +1,5 @@
 package com.mycompany.mensajesapp;
 
-import java.sql.Connection;
 import java.util.Scanner;
 
 public class Inicio {
@@ -39,19 +38,6 @@ public class Inicio {
                 
             }
         }while(opcion != 5);
-        
-        
-            
-        
-        /*
-        Conexion conexion = new Conexion();
-        
-        try(Connection cnx = conexion.getConnection()){
-            
-        }catch(Exception e){
-            System.out.println("ESta mal aqui");
-        }
-        */
-        
+           
     }
 }
