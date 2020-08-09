@@ -29,10 +29,10 @@ public class Inicio {
                 MensajesService.mostrarMensajes();
                 break;
             case 3:
-                MensajesService.borrarMensajes();
+                MensajesService.editarMensajes();
                 break;
             case 4:
-                MensajesService.editarMensajes();
+                MensajesService.borrarMensajes();
                 break;
             default:
                 break;

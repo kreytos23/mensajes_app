@@ -19,7 +19,7 @@ public class MensajesDAO {
             
             PreparedStatement ps = null;
             try{
-                String query = "INSERT INTO mensajes (mensajes, autor_mensajes) VALUES (?,?)";
+                String query = "INSERT INTO mensajes (contenido, autor_mensajes) VALUES (?,?)";
                 
                 ps = conexion.prepareStatement(query);
                 ps.setString(1, mensajes.getMensaje());
@@ -47,7 +47,7 @@ public class MensajesDAO {
             
             while(rs.next()){
                 System.out.println("Numero de ID: " + rs.getInt("id_mensaje"));
-                System.out.println("Mensaje: " + rs.getString("mensajes"));
+                System.out.println("Mensaje: " + rs.getString("contenido"));
                 System.out.println("Autor: " + rs.getString("autor_mensajes"));
                 System.out.println("Fecha: " + rs.getString("fecha_mensaje"));
                 System.out.println("\n");
@@ -60,10 +60,35 @@ public class MensajesDAO {
     }
     
     public static void borrarMensajesDB(int id_mensajes){
+        Conexion db_connect = new Conexion();
+        PreparedStatement ps = null;
         
+         try(Connection conexion = db_connect.getConnection()){
+            String query = "DELETE FROM mensajes WHERE id_mensaje = ?";    
+            ps = conexion.prepareStatement(query);
+            ps.setInt(1, id_mensajes);
+            ps.executeUpdate();
+            System.out.println("Mensaje borrado exitosamente");
+             
+         }catch(SQLException e){
+             System.out.println("No se ha podido borrar el mensaje " + e);
+         }
     }
     
     public static void editarMensajesDB(Mensajes mensaje){
+        Conexion db_connect = new Conexion();
+        PreparedStatement ps = null;
         
+         try(Connection conexion = db_connect.getConnection()){
+            String query = "UPDATE mensajes SET contenido = ? WHERE id_mensaje = ?"; 
+            ps = conexion.prepareStatement(query);
+            ps.setString(1, mensaje.getMensaje());
+            ps.setInt(2, mensaje.getId_mensaje());
+            ps.executeUpdate();
+            
+            System.out.println("Mensaje actualizado");
+         }catch(SQLException e){
+             System.out.println(e);
+         }
     }
 }
