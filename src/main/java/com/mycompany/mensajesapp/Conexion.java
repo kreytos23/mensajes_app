@@ -11,10 +11,7 @@ public class Conexion {
     public Connection getConnection(){
         Connection conection = null;
        
-        try{
-            
-          //  Class.forName(driver);
-            
+        try{            
             conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mensajes_app", "root", "");
            
             if(conection != null){
